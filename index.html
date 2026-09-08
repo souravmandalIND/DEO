@@ -5,7 +5,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="SheetMaster Practice Lab — adaptive Google Sheets and Warehouse Data Operator training." />
   <title>SheetMaster Practice Lab</title>
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Standalone build v1.1: CSS + JavaScript embedded for GitHub Pages reliability -->
+  <style>
+:root {
+  --bg:#f5f7fb;
+  --surface:#ffffff;
+  --surface-2:#f8fafc;
+  --text:#122033;
+  --muted:#66758a;
+  --line:#e3e9f2;
+  --primary:#3157e5;
+  --primary-2:#2343bd;
+  --accent:#0f9f6e;
+  --warning:#d97706;
+  --danger:#c23b4a;
+  --shadow:0 14px 35px rgba(18,32,51,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,select,textarea,input{font:inherit}
+button{cursor:pointer}
+.app-shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr}
+.sidebar{position:sticky;top:0;height:100vh;background:#10182b;color:#fff;padding:22px 16px;display:flex;flex-direction:column;gap:24px;z-index:20}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}.brand-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#4f6cf2,#17b98b);display:grid;place-items:center;font-weight:800}.brand strong{display:block;font-size:16px}.brand span{display:block;font-size:12px;color:#9dadc3;margin-top:2px}
+.nav{display:flex;flex-direction:column;gap:6px}.nav-item{border:0;background:transparent;color:#aab7c9;text-align:left;padding:12px 14px;border-radius:11px;display:flex;gap:10px;align-items:center}.nav-item:hover,.nav-item.active{background:#1d2941;color:#fff}.nav-item.active{box-shadow:inset 3px 0 0 #6d88ff}
+.sidebar-footer{margin-top:auto;border-top:1px solid #26334a;padding:16px 8px 0;display:grid;gap:10px}.mini-stat{display:flex;justify-content:space-between;color:#adbad0;font-size:13px}.mini-stat strong{color:#fff}
+.main{min-width:0}.topbar{height:88px;padding:18px 30px;border-bottom:1px solid var(--line);background:rgba(245,247,251,.94);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center}.topbar h1{font-size:24px;margin:2px 0 0}.topbar-right{display:flex;gap:8px}.eyebrow{font-size:11px;letter-spacing:.12em;font-weight:800;color:#6f7d90}.pill,.badge{display:inline-flex;align-items:center;border-radius:999px;padding:7px 10px;background:#e9eef9;font-size:12px;font-weight:800;color:#44506a}.pill-accent{background:#e0f7ef;color:#087a55}.badge{padding:6px 9px;background:#e7edff;color:#2f50c8}.badge-muted{background:#eef1f5;color:#5d6a7c;margin-left:6px}
+.view{display:none;padding:28px 30px 60px}.view.active{display:block}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.hero{padding:30px;display:grid;grid-template-columns:1fr 180px;gap:24px;align-items:center}.hero h2{font-size:34px;line-height:1.1;margin:12px 0}.hero p{max-width:780px;color:var(--muted);line-height:1.75;margin:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.hero-score{text-align:center}.ring{width:132px;height:132px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--primary) 0deg,#e8edf5 0deg);position:relative}.ring:after{content:"";position:absolute;width:100px;height:100px;background:white;border-radius:50%}.ring span{position:relative;z-index:1;font-size:24px;font-weight:900}.hero-score small{display:block;color:var(--muted);margin-top:8px}
+.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-2)}.btn-secondary{background:#edf1f9;color:#31405c}.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.sidebar .btn-ghost{border-color:#33415a;color:#ced7e6}.btn-small{padding:8px 10px;font-size:12px}.btn:disabled{opacity:.5;cursor:not-allowed}.link-btn{border:0;background:transparent;color:var(--primary);font-weight:800;padding:0}.icon-btn{border:0;background:transparent;font-size:20px;padding:8px}.mobile-only{display:none}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0}.stat-card{padding:20px}.stat-card span,.stat-card small{display:block;color:var(--muted)}.stat-card strong{display:block;font-size:25px;margin:8px 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.two-col>.card{padding:22px}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.section-head h3{margin:5px 0 16px}.focus-list{display:grid;gap:10px}.focus-item{border:1px solid var(--line);border-radius:12px;padding:13px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.focus-item strong{display:block}.focus-item small{color:var(--muted)}.priority{font-size:11px;font-weight:800;color:#9b5d00;background:#fff3d8;padding:5px 8px;border-radius:999px}.skill-bars{display:grid;gap:12px}.skill-row{display:grid;grid-template-columns:145px 1fr 45px;align-items:center;gap:10px;font-size:13px}.bar{height:8px;background:#edf1f5;border-radius:999px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#7c93ff);border-radius:inherit}.diagnostic-card{margin-top:16px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px}.diagnostic-card h3{margin:5px 0}.diagnostic-card p{color:var(--muted);margin:0}
+.section-intro{margin-bottom:18px;color:var(--muted)}.roadmap-grid{display:grid;gap:14px}.level-card{padding:20px;display:grid;grid-template-columns:100px 1fr 150px;gap:16px;align-items:start}.level-num{font-size:13px;color:var(--muted)}.level-num strong{font-size:30px;color:var(--text);display:block}.level-card h3{margin:0 0 8px}.level-card p{color:var(--muted);margin:0 0 10px}.tag-wrap{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:11px;padding:5px 8px;border-radius:7px;background:#f0f3f8;color:#536278}.level-progress{text-align:right}.level-progress strong{font-size:20px;display:block}.level-progress small{color:var(--muted)}
+.practice-layout{display:grid;grid-template-columns:290px 1fr;gap:16px}.practice-settings{padding:20px;height:max-content;position:sticky;top:112px}.practice-settings h3{margin:6px 0 18px}.practice-settings label,.sim-controls label{display:grid;gap:7px;color:var(--muted);font-size:13px;margin-bottom:13px}.practice-settings select,.sim-controls select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}.practice-settings>.btn{width:100%}.practice-meta{border-top:1px solid var(--line);margin-top:18px;padding-top:12px;display:grid;gap:10px}.practice-meta div{display:flex;justify-content:space-between;font-size:12px}.practice-meta span{color:var(--muted)}.problem-card{padding:24px;min-height:620px}.problem-topline{display:flex;justify-content:space-between;align-items:center}.problem-card h2{margin:18px 0 8px}.problem-card>p{color:var(--muted);line-height:1.65}.dataset-wrap{overflow:auto;margin:18px 0;border:1px solid var(--line);border-radius:12px;background:#fff}.dataset-wrap.tall{max-height:470px}.sheet-table{border-collapse:collapse;width:100%;min-width:580px;font-size:12px}.sheet-table th{position:sticky;top:0;background:#f0f3f8;z-index:1}.sheet-table th,.sheet-table td{border:1px solid #dfe5ee;padding:8px 10px;text-align:left;white-space:nowrap}.sheet-table tr:nth-child(even) td{background:#fbfcfe}.cell-ref{color:#69788d;font-size:10px;display:block;margin-bottom:2px}.answer-area{margin-top:18px}.answer-area label{font-size:13px;font-weight:800}.answer-area textarea,.interview-card textarea,.sim-answer{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:8px;resize:vertical;outline:none}.answer-area textarea:focus,.interview-card textarea:focus,.sim-answer:focus{border-color:#9dafef;box-shadow:0 0 0 3px #edf1ff}.answer-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.choice-area{display:grid;gap:8px;margin-top:10px}.choice-btn{padding:11px;border:1px solid var(--line);background:white;border-radius:10px;text-align:left}.choice-btn.selected{border-color:var(--primary);background:#eef2ff}.feedback{margin-top:16px;padding:16px;border-radius:12px;line-height:1.6}.feedback.good{background:#eaf8f2;border:1px solid #bce8d6}.feedback.bad{background:#fff0f1;border:1px solid #f1c2c8}.feedback.info{background:#eef3ff;border:1px solid #cbd7ff}.feedback h4{margin:0 0 6px}.feedback p{margin:5px 0}.feedback code{background:#fff;padding:2px 5px;border-radius:5px}.hidden{display:none!important}
+.simulation-grid{display:grid;grid-template-columns:310px 1fr;gap:16px}.sim-brief,.sim-workspace{padding:22px}.sim-brief h3{margin:6px 0}.sim-brief p{color:var(--muted);line-height:1.6}.sim-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.sim-controls label{margin:0}.sim-brief>.btn{width:100%;margin-top:10px}.sim-tasks{display:grid;gap:8px}.sim-task{border-left:3px solid var(--primary);background:#f7f9fd;padding:10px 12px;border-radius:8px}.sim-answer-block{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}.sim-answer-block h4{margin:0 0 7px}.empty-state{min-height:120px;display:grid;place-items:center;color:var(--muted);text-align:center}
+.interview-shell{max-width:900px;margin:auto}.interview-card{padding:28px}.interview-header{display:flex;justify-content:space-between}.interview-card h2{font-size:28px;margin:24px 0 8px}.muted{color:var(--muted);line-height:1.6}.interview-card textarea{margin-top:16px}
+.exam-grid{display:grid;grid-template-columns:300px 1fr;gap:16px}.exam-grid>.card{padding:22px}.exam-options{display:grid;gap:10px}.exam-option{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;text-align:left}.exam-option strong{display:block}.exam-option small{color:var(--muted)}.exam-statusbar{display:flex;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}.exam-question h3{font-size:22px}.exam-question p{color:var(--muted)}
+.progress-table{display:grid;gap:8px}.progress-row{display:grid;grid-template-columns:1.4fr 100px 1fr 90px 90px;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.status{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;text-align:center;background:#eef1f5;color:#526075}.status.mastered{background:#dcf7ed;color:#087a55}.status.proficient{background:#e7edff;color:#2f50c8}.status.practicing{background:#fff2d8;color:#956000}
+.modal-backdrop{position:fixed;inset:0;background:rgba(5,10,20,.6);z-index:100;display:grid;place-items:center;padding:20px}.modal{width:min(900px,100%);max-height:90vh;overflow:auto;padding:24px}.modal-head{display:flex;justify-content:space-between;align-items:flex-start}.modal h2{margin:5px 0 18px}.diag-status{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}.progress-track{height:8px;background:#edf1f5;border-radius:999px;overflow:hidden;margin:8px 0 20px}.progress-track>div{height:100%;background:var(--primary);width:0}.diag-question{padding:6px 0}.diag-question h3{margin-top:0}.diag-question p{color:var(--muted);line-height:1.6}.diag-question textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;min-height:90px}.diag-actions{display:flex;gap:8px;margin-top:10px}
+@media(max-width:1100px){.stats-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.practice-layout,.simulation-grid,.exam-grid{grid-template-columns:1fr}.practice-settings{position:static}.level-card{grid-template-columns:80px 1fr}.level-progress{grid-column:2;text-align:left}.progress-row{grid-template-columns:1.3fr 90px 1fr}.progress-row>*:nth-child(4),.progress-row>*:nth-child(5){display:none}}
+@media(max-width:780px){.app-shell{display:block}.sidebar{position:fixed;left:-280px;width:260px;transition:left .2s}.sidebar.open{left:0}.mobile-only{display:inline-flex}.topbar{padding:14px 16px;height:76px}.topbar-right .pill:first-child{display:none}.view{padding:18px 14px 40px}.hero{grid-template-columns:1fr;padding:22px}.hero h2{font-size:28px}.hero-score{display:none}.stats-grid{grid-template-columns:1fr 1fr}.diagnostic-card{align-items:flex-start;flex-direction:column}.roadmap-grid{gap:10px}.level-card{grid-template-columns:65px 1fr;padding:16px}.level-progress{grid-column:1/-1}.problem-card{padding:17px}.problem-topline{align-items:flex-start;gap:8px}.sim-controls{grid-template-columns:1fr}.progress-row{grid-template-columns:1fr 80px}.progress-row .bar,.progress-row>*:nth-child(4),.progress-row>*:nth-child(5){display:none}.topbar h1{font-size:20px}}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr}.hero-actions .btn{width:100%}.topbar-right{display:none}.skill-row{grid-template-columns:120px 1fr 40px}.interview-card{padding:18px}.interview-card h2{font-size:23px}}
+
+</style>
 </head>
 <body>
   <div class="app-shell">
@@ -234,8 +277,439 @@
     </div>
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/engine.js"></script>
-  <script src="js/app.js"></script>
+  <script>
+window.SM_DATA = (() => {
+  const levels = [
+    {id:1,title:'Absolute Beginner',desc:'Spreadsheet interface, cells, data entry, formatting and basic navigation.',skills:['interface','data-entry','formatting','number-date-format','shortcuts']},
+    {id:2,title:'Core Google Sheets',desc:'Essential arithmetic and first formulas for daily data work.',skills:['sum','average','count','min-max','arithmetic','percentage','cell-references','basic-if']},
+    {id:3,title:'Data Management',desc:'Clean, organize, control and inspect operational data.',skills:['sort-filter','find-replace','duplicates','freeze','validation','conditional-formatting','data-cleaning']},
+    {id:4,title:'Intermediate Formulas',desc:'Conditional aggregation, logic, dates, rounding and text processing.',skills:['sumif-sumifs','countif-countifs','logic','iferror','round','dates','text-functions']},
+    {id:5,title:'Lookup & Advanced Sheets',desc:'Lookup, dynamic arrays, Query, pivots and reporting tools.',skills:['vlookup','xlookup','index-match','filter-unique-sort','query','arrayformula','pivot','charts','named-ranges']},
+    {id:6,title:'Warehouse / E-commerce Operations',desc:'Inventory, order flow, dispatch, returns, reconciliation and accuracy.',skills:['inventory-basics','stock-reconciliation','order-accuracy','sku-matching','low-stock','returns-dispatch','shift-reporting','data-quality']},
+    {id:7,title:'Real Work Simulation',desc:'Multi-step warehouse work packets using 20–500+ rows.',skills:['work-simulation']},
+    {id:8,title:'Interview Simulator',desc:'HR, Sheets, Excel, warehouse operations and situational answers.',skills:['interview']},
+    {id:9,title:'Exam Mode',desc:'Timed practical exams and final job-readiness test.',skills:['exam-readiness']}
+  ];
+
+  const skillMeta = {
+    'interface':['Spreadsheet Interface',1], 'data-entry':['Data Entry',1], 'formatting':['Formatting',1], 'number-date-format':['Number & Date Format',1], 'shortcuts':['Keyboard Shortcuts',1],
+    'sum':['SUM',2], 'average':['AVERAGE',2], 'count':['COUNT / COUNTA',2], 'min-max':['MIN / MAX',2], 'arithmetic':['Basic Arithmetic',2], 'percentage':['Percentage',2], 'cell-references':['Relative / Absolute References',2], 'basic-if':['Basic IF',2],
+    'sort-filter':['Sort & Filter',3], 'find-replace':['Find & Replace',3], 'duplicates':['Remove Duplicates',3], 'freeze':['Freeze Rows / Columns',3], 'validation':['Data Validation / Dropdowns',3], 'conditional-formatting':['Conditional Formatting',3], 'data-cleaning':['Data Cleaning',3],
+    'sumif-sumifs':['SUMIF / SUMIFS',4], 'countif-countifs':['COUNTIF / COUNTIFS',4], 'logic':['IF / AND / OR',4], 'iferror':['IFERROR',4], 'round':['ROUND',4], 'dates':['TODAY / DATE',4], 'text-functions':['Text Functions',4],
+    'vlookup':['VLOOKUP',5], 'xlookup':['XLOOKUP',5], 'index-match':['INDEX / MATCH',5], 'filter-unique-sort':['FILTER / UNIQUE / SORT',5], 'query':['QUERY',5], 'arrayformula':['ARRAYFORMULA',5], 'pivot':['Pivot Tables',5], 'charts':['Charts',5], 'named-ranges':['Named Ranges',5],
+    'inventory-basics':['Inventory Basics',6], 'stock-reconciliation':['Stock Reconciliation',6], 'order-accuracy':['Order Accuracy',6], 'sku-matching':['Barcode / SKU Matching',6], 'low-stock':['Low Stock Detection',6], 'returns-dispatch':['Returns / Dispatch',6], 'shift-reporting':['Daily / Shift Reports',6], 'data-quality':['Warehouse Data Quality',6],
+    'work-simulation':['Work Simulation',7], 'interview':['Interview',8], 'exam-readiness':['Exam Readiness',9]
+  };
+
+  const products = [
+    'Wireless Mouse','USB-C Cable','Cotton T-Shirt','Steel Bottle','Phone Case','Bluetooth Speaker','LED Bulb','Notebook A5','Travel Backpack','Power Bank','Yoga Mat','Coffee Mug','Laptop Stand','HDMI Cable','Sports Shoes','Desk Organizer','Hair Dryer','Extension Board','Kitchen Scale','Earbuds','Smart Watch Strap','Microfiber Towel','Water Filter','Charging Adapter'
+  ];
+  const statuses = ['Packed','Dispatched','Delivered','Returned','Pending','RTO'];
+  const locations = ['A-01','A-02','B-01','B-04','C-02','C-05','D-01','D-03'];
+
+  const interviewBank = [
+    {category:'HR',q:'Tell me about yourself for a Warehouse Data Operator role.',keywords:['data','accuracy','google sheets','warehouse','learn','experience'],good:'সংক্ষিপ্ত পরিচয়, relevant data skill, accuracy mindset এবং role-fit পরিষ্কার হওয়া উচিত।',sample:'I am a detail-oriented candidate comfortable with data entry and Google Sheets. I focus strongly on accuracy, checking SKU, quantity and status before updating records. I am building practical warehouse reporting skills and I am comfortable working with targets, shifts and repetitive data while maintaining quality.'},
+    {category:'Google Sheets',q:'What is the difference between COUNT and COUNTA?',keywords:['count','number','numeric','counta','non-empty','blank'],good:'COUNT numeric cells গোনে, COUNTA non-empty cells গোনে—এই distinction অবশ্যই বলতে হবে।',sample:'COUNT counts cells containing numbers, while COUNTA counts all non-empty cells, including text, numbers and dates. In a warehouse sheet I might use COUNT for numeric transaction IDs and COUNTA to count filled order records.'},
+    {category:'Warehouse',q:'Physical stock is 148 units but the system shows 153. What will you do?',keywords:['recount','verify','transaction','inbound','outbound','damage','adjust','supervisor'],good:'Immediate blind adjustment নয়; verify → trace movements → document → authorized correction.',sample:'First I would recount the physical stock and verify the SKU and bin location. Then I would check recent inbound, outbound, returns and damaged-stock entries for missing or duplicate transactions. I would document the 5-unit variance and report it to the supervisor before making any authorized system adjustment.'},
+    {category:'Situational',q:'You have 1,000 order rows to update before shift end and notice duplicate order IDs. What do you do?',keywords:['duplicate','filter','conditional','verify','deadline','accuracy','supervisor'],good:'Deadline-এর চাপে duplicate ignore করা যাবে না; fast detection + verification + escalation দরকার।',sample:'I would use a duplicate check such as COUNTIF or conditional formatting to isolate repeated order IDs, verify them against the source system, and correct only confirmed errors. I would continue processing clean rows and inform the supervisor early if the issue could affect the deadline. Accuracy is more important than silently submitting incorrect data.'},
+    {category:'Excel / Sheets',q:'Explain when you would use an absolute reference like $B$2.',keywords:['absolute','fixed','copy','formula','reference'],good:'Copying formula while keeping a constant cell fixed is the core concept.',sample:'I use an absolute reference when one cell must stay fixed as I copy a formula. For example, if B2 contains a tax rate and each row has an amount, I can multiply the row amount by $B$2 so the tax-rate cell does not move.'},
+    {category:'HR',q:'Are you comfortable with rotational shifts and repetitive work?',keywords:['yes','shift','accuracy','routine','focus','schedule'],good:'Availability-এর সাথে sustainable accuracy ও discipline দেখানো ভালো।',sample:'Yes. I understand warehouse operations may require rotational shifts and repetitive data work. I am comfortable following a schedule, and I use a consistent checking process so repetitive tasks do not reduce my accuracy.'},
+    {category:'Google Sheets',q:'How can you identify duplicate order IDs in Google Sheets?',keywords:['countif','conditional formatting','remove duplicates','duplicate'],good:'Detection আর deletion আলাদা—প্রথমে identify/verify করা গুরুত্বপূর্ণ।',sample:'I can use Conditional formatting with a custom formula or COUNTIF, for example =COUNTIF($A:$A,A2)>1, to highlight duplicate IDs. I would verify them before using Remove duplicates because duplicate-looking records can sometimes be legitimate.'},
+    {category:'Warehouse',q:'What is stock reconciliation?',keywords:['physical','system','compare','variance','inventory','adjust'],good:'Physical vs system stock comparison এবং variance investigation বলতে হবে।',sample:'Stock reconciliation is the process of comparing physical inventory with system or spreadsheet inventory, identifying variances, finding the reason—such as missed receipts, dispatches, damages or data-entry errors—and then making an authorized correction with proper documentation.'},
+    {category:'Situational',q:'A supervisor asks you to change an inventory value even though the supporting document is missing. What do you do?',keywords:['verify','document','authorization','supervisor','record','policy'],good:'Professional control mindset: unsupported edits should be verified and documented.',sample:'I would respectfully ask for the supporting reference or authorized instruction before changing the stock value. If the change is urgent, I would record who authorized it and the reason according to SOP. I would not make an undocumented adjustment that could damage inventory accuracy.'}
+  ];
+
+  const exams = [
+    {id:'beginner',name:'Beginner Exam',questions:10,minutes:12,levels:[1,2]},
+    {id:'intermediate',name:'Intermediate Exam',questions:12,minutes:18,levels:[2,3,4]},
+    {id:'advanced',name:'Advanced Sheets Exam',questions:14,minutes:24,levels:[4,5]},
+    {id:'warehouse',name:'Warehouse DEO Exam',questions:15,minutes:25,levels:[3,4,5,6]},
+    {id:'final',name:'Final Interview Test',questions:18,minutes:32,levels:[1,2,3,4,5,6]}
+  ];
+
+  return {levels,skillMeta,products,statuses,locations,interviewBank,exams};
+})();
+
+</script>
+  <script>
+window.SM_ENGINE = (() => {
+  const D = window.SM_DATA;
+  const STORAGE_KEY = 'sheetmasterPracticeLab.v1';
+  const difficulties = ['easy','medium','hard','expert','real-world'];
+
+  const defaultState = () => ({
+    version:1,
+    xp:0,
+    totalAttempts:0,
+    totalCorrect:0,
+    streak:0,
+    bestStreak:0,
+    lastStudyDate:null,
+    diagnostic:{completed:false,score:0,total:12,date:null},
+    skills:Object.fromEntries(Object.keys(D.skillMeta).map(k => [k,{mastery:0,attempts:0,correct:0,recent:[],difficulties:[],lastSeen:null}])),
+    examHistory:[],
+    interview:{attempts:0,avgScore:0}
+  });
+
+  let state = loadState();
+
+  function loadState(){
+    try{
+      const raw=localStorage.getItem(STORAGE_KEY);
+      if(!raw) return defaultState();
+      const parsed=JSON.parse(raw);
+      const base=defaultState();
+      return {...base,...parsed,skills:{...base.skills,...(parsed.skills||{})}};
+    }catch(e){ return defaultState(); }
+  }
+  function save(){ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){} }
+  function reset(){ state=defaultState(); save(); return state; }
+  function getState(){ return state; }
+  function today(){ const d=new Date(); const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; }
+  function touchStudyDay(){
+    const t=today();
+    if(state.lastStudyDate===t) return;
+    if(!state.lastStudyDate){state.streak=1;}
+    else{
+      const prev=new Date(state.lastStudyDate+'T00:00:00');
+      const now=new Date(t+'T00:00:00');
+      const days=Math.round((now-prev)/86400000);
+      state.streak=days===1?state.streak+1:1;
+    }
+    state.lastStudyDate=t; state.bestStreak=Math.max(state.bestStreak,state.streak); save();
+  }
+  function skillStatus(s){
+    if(!s || s.attempts===0) return 'Not Started';
+    const recentAcc=s.recent.length ? s.recent.filter(Boolean).length/s.recent.length*100 : 0;
+    const diffCount=new Set(s.difficulties).size;
+    if(s.mastery>=88 && s.attempts>=8 && recentAcc>=80 && diffCount>=3) return 'Mastered';
+    if(s.mastery>=70 && s.attempts>=6 && recentAcc>=70) return 'Proficient';
+    if(s.mastery>=35 || s.attempts>=3) return 'Practicing';
+    return 'Learning';
+  }
+  function recordAttempt(skillKey,correct,difficulty='medium',mode='practice'){
+    if(!state.skills[skillKey]) return;
+    touchStudyDay();
+    const s=state.skills[skillKey];
+    s.attempts++; if(correct) s.correct++;
+    state.totalAttempts++; if(correct) state.totalCorrect++;
+    s.recent.push(Boolean(correct)); if(s.recent.length>10)s.recent.shift();
+    s.difficulties.push(difficulty); if(s.difficulties.length>20)s.difficulties.shift();
+    s.lastSeen=Date.now();
+    const weights={easy:4,medium:6,hard:8,expert:10,'real-world':12};
+    const delta=correct?weights[difficulty]||6:-(weights[difficulty]||6)*0.62;
+    const consistency=s.recent.length>=4 ? (s.recent.filter(Boolean).length/s.recent.length-.5)*4 : 0;
+    s.mastery=Math.max(0,Math.min(100,Math.round((s.mastery+delta+consistency)*10)/10));
+    if(correct){ const xp={easy:8,medium:12,hard:18,expert:25,'real-world':30}[difficulty]||12; state.xp+=xp; }
+    save();
+  }
+  function overallMastery(){
+    const core=Object.entries(state.skills).filter(([k])=>!['interview','exam-readiness'].includes(k));
+    if(!core.length) return 0;
+    return Math.round(core.reduce((a,[,s])=>a+s.mastery,0)/core.length);
+  }
+  function accuracy(){ return state.totalAttempts?Math.round(state.totalCorrect/state.totalAttempts*100):0; }
+  function rank(){ const m=overallMastery(); if(m>=90)return 'Job Ready'; if(m>=75)return 'Advanced'; if(m>=55)return 'Operator'; if(m>=30)return 'Learner'; return 'Rookie'; }
+  function weakSkills(limit=5){
+    return Object.entries(state.skills)
+      .filter(([k])=>!['interview','exam-readiness'].includes(k))
+      .map(([k,s])=>({key:k,...s,label:D.skillMeta[k][0],priority:(100-s.mastery)+(s.attempts<3?12:0)+(s.recent.slice(-3).filter(x=>!x).length*7)}))
+      .sort((a,b)=>b.priority-a.priority).slice(0,limit);
+  }
+  function chooseAdaptiveSkill(allowedLevels=null){
+    const entries=Object.keys(D.skillMeta).filter(k=>{
+      if(['interview','exam-readiness','work-simulation'].includes(k)) return false;
+      return !allowedLevels || allowedLevels.includes(D.skillMeta[k][1]);
+    });
+    const weighted=[];
+    entries.forEach(k=>{
+      const s=state.skills[k]; const recentWrong=s.recent.slice(-4).filter(x=>!x).length;
+      const unseen=s.attempts===0?20:0;
+      const staleness=s.lastSeen?Math.min(15,(Date.now()-s.lastSeen)/86400000):10;
+      const weight=Math.max(5,100-s.mastery+recentWrong*12+unseen+staleness);
+      weighted.push({k,weight});
+    });
+    const total=weighted.reduce((a,x)=>a+x.weight,0); let r=Math.random()*total;
+    for(const x of weighted){r-=x.weight;if(r<=0)return x.k;}
+    return weighted[0]?.k||'sum';
+  }
+  function adaptiveDifficulty(skillKey){
+    const m=state.skills[skillKey]?.mastery||0;
+    if(m<20)return 'easy'; if(m<45)return Math.random()<.7?'easy':'medium'; if(m<65)return 'medium'; if(m<80)return Math.random()<.65?'hard':'medium'; if(m<90)return 'hard'; return Math.random()<.6?'expert':'real-world';
+  }
+  const rand=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+  const pick=a=>a[rand(0,a.length-1)];
+  function sku(i=0){ return `SKU-${String(rand(100,999))}-${String.fromCharCode(65+(i%26))}`; }
+  function normalizeFormula(v){ return String(v||'').trim().toUpperCase().replace(/\s+/g,'').replace(/;/g,','); }
+  function normalizeText(v){ return String(v||'').trim().toLowerCase().replace(/\s+/g,' '); }
+  function escapeCsv(v){ const s=String(v??''); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
+
+  function makeDataset(rows=8,opts={}){
+    const out=[];
+    for(let i=0;i<rows;i++){
+      const opening=rand(20,180), inbound=rand(0,60), outbound=rand(0,70), damaged=rand(0,8), returned=rand(0,15);
+      const available=Math.max(0,opening+inbound+returned-outbound-damaged);
+      out.push({
+        SKU:sku(i),Product:pick(D.products),Location:pick(D.locations),Opening:opening,Inbound:inbound,Outbound:outbound,Returns:returned,Damaged:damaged,Available:available,
+        Reorder_Level:rand(15,60),Order_ID:`ORD-${rand(10000,99999)}`,Qty:rand(1,8),Status:pick(D.statuses)
+      });
+    }
+    return out;
+  }
+
+  function qBase(skill,difficulty,title,prompt,expected,explanation,hints,dataset=null,type='formula',extra={}){
+    return {id:`q_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,skill,difficulty,title,prompt,expected,explanation,hints,dataset,type,...extra};
+  }
+
+  function generateQuestion(skill='adaptive',difficulty='adaptive'){
+    if(skill==='adaptive') skill=chooseAdaptiveSkill();
+    if(difficulty==='adaptive') difficulty=adaptiveDifficulty(skill);
+    const gen=generators[skill]||generators['sum'];
+    return gen(difficulty);
+  }
+
+  const generators={
+    'interface':d=>qBase('interface',d,'Cell reference চিনো','Column D এবং Row 7 যেখানে intersect করেছে, সেই cell reference কী?','D7','Cell reference সবসময় Column letter + Row number হয়।',['Column letter আগে ভাবো।','Column D + Row 7 একসাথে লিখো।','Answer: D7'],null,'text'),
+    'data-entry':d=>qBase('data-entry',d,'Consistent data entry','Warehouse sheet-এ quantity field-এ কোন entry সবচেয়ে safe?','25','Quantity numeric field-এ plain number ব্যবহার করা ভালো; unit আলাদা column-এ রাখা উচিত।',['Numeric field-এ extra text avoid করো।','"25 pcs" নয়—শুধু number।','Answer: 25'],null,'text'),
+    'formatting':d=>qBase('formatting',d,'Header readability','Header row bold করতে Google Sheets-এর কোন formatting action ব্যবহার করবে?','bold','Toolbar-এর Bold (B) option ব্যবহার করা হয়।',['Toolbar-এর text style controls দেখো।','B icon চিন্তা করো।','Answer: Bold'],null,'text',{accepted:['bold','b','ctrl+b']}),
+    'number-date-format':d=>qBase('number-date-format',d,'Date formatting','একটি cell-এ 9/9/2026 আছে। এটিকে date হিসেবে format করার menu path-এর core option কী?','date','Format → Number → Date ব্যবহার করা যায়।',['Format menu ভাবো।','Number submenu-এর মধ্যে date আছে।','Answer: Date'],null,'text',{accepted:['date','format > number > date','format-number-date']}),
+    'shortcuts':d=>qBase('shortcuts',d,'Undo shortcut','Windows-এ Google Sheets Undo shortcut কী?','ctrl+z','Ctrl + Z হলো standard Undo shortcut।',['Ctrl key ব্যবহার হবে।','Z key-এর সাথে combine করো।','Answer: Ctrl+Z'],null,'text',{accepted:['ctrl+z','control+z','ctrl z']}),
+    'sum':d=>{const rows=rand(5,10),ds=makeDataset(rows),end=rows+1;return qBase('sum',d,'Total outbound বের করো',`B নয়—dataset-এর Outbound column দেখে row 2 থেকে row ${end} পর্যন্ত total বের করার formula লিখো।`,`=SUM(F2:F${end})`,`Outbound column F; তাই range F2:F${end}. SUM continuous numeric range যোগ করে।`,['SUM function লাগবে।','Outbound হলো column F.','Formula: =SUM(F2:F'+end+')'],ds,'formula')},
+    'average':d=>{const rows=rand(5,9),ds=makeDataset(rows),end=rows+1;return qBase('average',d,'Average damaged stock',`Damaged column-এর row 2 থেকে row ${end} পর্যন্ত average বের করার formula লিখো।`,`=AVERAGE(H2:H${end})`,`Damaged column H, তাই AVERAGE(H2:H${end}).`,['AVERAGE function ব্যবহার করো।','Damaged = H column.','Formula: =AVERAGE(H2:H'+end+')'],ds)},
+    'count':d=>qBase('count',d,'COUNT vs COUNTA','A2:A20 range-এ কিছু Order ID text আছে এবং কিছু blank. Filled Order ID কয়টি আছে জানতে কোন formula ভালো?','=COUNTA(A2:A20)','Order ID text; COUNTA non-empty cell count করে।',['COUNT text গোনে না।','Non-empty cells গণনা করতে COUNTA.','Formula: =COUNTA(A2:A20)'],null,'formula'),
+    'min-max':d=>qBase('min-max',d,'Highest quantity','J2:J50 range-এর highest quantity বের করার formula কী?','=MAX(J2:J50)','Highest numeric value বের করতে MAX.',['Largest value function ভাবো।','MIN নয়।','Formula: =MAX(J2:J50)'],null),
+    'arithmetic':d=>qBase('arithmetic',d,'Available stock formula','Opening B2, Inbound C2, Returns D2, Outbound E2, Damaged F2. Available stock-এর formula লিখো।','=B2+C2+D2-E2-F2','Available = Opening + Inbound + Returns − Outbound − Damaged.',['Positive movements আগে যোগ করো।','Outbound এবং Damaged subtract হবে।','Formula: =B2+C2+D2-E2-F2'],null,'formula'),
+    'percentage':d=>{const target=rand(700,1200),ach=rand(500,target);const pct=Math.round(ach/target*10000)/100;return qBase('percentage',d,'Target achievement %',`Target ${target}, achievement ${ach}. Achievement percentage কত? শুধু number লিখো, % sign optional.`,pct,`(${ach}/${target})×100 = ${pct}%`,['Achievement ÷ Target.','তারপর ×100.','Answer: '+pct+'%'],null,'numeric',{tolerance:.05})},
+    'cell-references':d=>qBase('cell-references',d,'Absolute reference','Tax rate B1-এ আছে। A2 amount-কে B1-এর fixed rate দিয়ে multiply করে নিচে copy করতে formula কী?','=A2*$B$1','$B$1 absolute reference হওয়ায় copy করলে tax-rate cell বদলাবে না।',['B1 fixed রাখতে হবে।','$ sign row ও column দুটোতেই।','Formula: =A2*$B$1'],null),
+    'basic-if':d=>qBase('basic-if',d,'Low stock IF','Available stock G2 যদি 20-এর নিচে হয় "LOW" নাহলে "OK" দেখাবে—formula লিখো.','=IF(G2<20,"LOW","OK")','IF(logical_test, value_if_true, value_if_false).',['IF function লাগবে।','Test: G2<20','Formula: =IF(G2<20,"LOW","OK")'],null,'formula',{accepted:['=IF(G2<20,"LOW","OK")',"=IF(G2<20,'LOW','OK')"]}),
+    'sort-filter':d=>qBase('sort-filter',d,'Filter low stock','শুধু Available < Reorder Level rows দেখতে কোন feature সবচেয়ে উপযুক্ত?','filter','Filter conditions ব্যবহার করে matching rows দেখানো যায়।',['Rows hide/show করার feature.','Sort শুধু order বদলায়।','Answer: Filter'],null,'text',{accepted:['filter','filter view']}),
+    'find-replace':d=>qBase('find-replace',d,'Bulk status correction','100 rows-এ “Despatched” typo-কে “Dispatched” করতে fastest built-in tool কোনটি?','find and replace','Find and replace bulk text correction-এর জন্য ideal.',['Edit menu-এর utility.','Find text, replace text.','Answer: Find and Replace'],null,'text',{accepted:['find and replace','find & replace','ctrl+h']}),
+    'duplicates':d=>qBase('duplicates',d,'Duplicate detection first','Duplicate Order IDs safely identify করতে deletion-এর আগে কোন formula ব্যবহার করা যায়?','=COUNTIF($A:$A,A2)>1','COUNTIF দিয়ে occurrences >1 হলে duplicate flag করা যায়।',['COUNTIF লাগতে পারে।','Current ID পুরো column-এ কতবার আছে দেখো।','Formula: =COUNTIF($A:$A,A2)>1'],null,'formula',{accepted:['=COUNTIF($A:$A,A2)>1','=COUNTIF(A:A,A2)>1']}),
+    'freeze':d=>qBase('freeze',d,'Keep header visible','500-row sheet scroll করার সময় header visible রাখতে কোন feature?','freeze','View → Freeze ব্যবহার করা হয়।',['View menu ভাবো।','Header lock করে রাখে।','Answer: Freeze'],null,'text',{accepted:['freeze','freeze row','freeze rows']}),
+    'validation':d=>qBase('validation',d,'Controlled status entry','Status column-এ শুধু Pending, Packed, Dispatched, Delivered allow করতে কোন feature?','data validation','Data validation dropdown invalid/manual variation কমায়।',['Controlled allowed values.','Dropdown এর সাথে related.','Answer: Data validation'],null,'text',{accepted:['data validation','dropdown','data validation dropdown']}),
+    'conditional-formatting':d=>qBase('conditional-formatting',d,'Visual low-stock alert','Available stock < 10 হলে row/cell red highlight করতে কোন feature?','conditional formatting','Conditional formatting rule condition match হলে format apply করে।',['Condition based visual formatting.','Format menu feature.','Answer: Conditional formatting'],null,'text',{accepted:['conditional formatting']}),
+    'data-cleaning':d=>qBase('data-cleaning',d,'Remove hidden spaces','A2-এর SKU-তে leading/trailing spaces আছে। Clean matching-এর জন্য formula?','=TRIM(A2)','TRIM extra leading/trailing/repeated spaces remove করে।',['Text cleaning function.','Space trim করো.','Formula: =TRIM(A2)'],null),
+    'sumif-sumifs':d=>qBase('sumif-sumifs',d,'Delivered quantity total','Status column H এবং Qty column G. শুধু Delivered rows-এর Qty total করার formula লিখো.','=SUMIF(H:H,"Delivered",G:G)','Single condition হলে SUMIF(range, criterion, sum_range).',['Single condition.','Status criterion = Delivered.','Formula: =SUMIF(H:H,"Delivered",G:G)'],null,'formula'),
+    'countif-countifs':d=>qBase('countif-countifs',d,'Count urgent exceptions','Status H column = Pending এবং Qty G column > 5—এমন orders count করার formula?','=COUNTIFS(H:H,"Pending",G:G,">5")','Multiple conditions count করতে COUNTIFS.',['Multiple criteria আছে।','COUNTIFS দুই pair নেবে।','Formula: =COUNTIFS(H:H,"Pending",G:G,">5")'],null,'formula'),
+    'logic':d=>qBase('logic',d,'IF + AND quality check','G2 Qty >0 এবং H2 Status="Packed" হলে "READY", নয়তো "CHECK" দেখাও.','=IF(AND(G2>0,H2="Packed"),"READY","CHECK")','AND দুটি condition সত্য হলে IF READY দেয়।',['IF-এর logical test-এর ভিতরে AND.','AND(G2>0,H2="Packed")','Formula: =IF(AND(G2>0,H2="Packed"),"READY","CHECK")'],null,'formula'),
+    'iferror':d=>qBase('iferror',d,'Hide lookup errors','VLOOKUP formula error দিলে blank দেখাতে wrapper formula কী pattern হবে?','=IFERROR(VLOOKUP(A2,D:E,2,FALSE),"")','IFERROR(value, value_if_error) lookup failures handle করে।',['Lookup formula-কে wrapper দাও।','Error হলে empty string.','Formula: =IFERROR(VLOOKUP(A2,D:E,2,FALSE),"")'],null,'formula'),
+    'round':d=>qBase('round',d,'Round percentage','C2-এর decimal percentage 2 decimal places-এ round করার formula?','=ROUND(C2,2)','ROUND(value, number_of_digits).',['ROUND function.','2 decimal places.','Formula: =ROUND(C2,2)'],null),
+    'dates':d=>qBase('dates',d,'Today date','Current date dynamically দেখানোর Google Sheets formula?','=TODAY()','TODAY() current date returns and recalculates.',['No arguments required.','Date function TODAY.','Formula: =TODAY()'],null),
+    'text-functions':d=>qBase('text-functions',d,'Build SKU label','A2 Product ID এবং B2 Size. মাঝখানে hyphen দিয়ে combine করার simple formula?','=A2&"-"&B2','& operator text concatenate করে।',['Concatenation.','Hyphen quotes-এর মধ্যে.','Formula: =A2&"-"&B2'],null,'formula',{accepted:['=A2&"-"&B2','=CONCATENATE(A2,"-",B2)']}),
+    'vlookup':d=>qBase('vlookup',d,'SKU price lookup','A2 SKU খুঁজবে D2:F100 table-এ, price 3rd column, exact match. Formula?','=VLOOKUP(A2,D2:F100,3,FALSE)','VLOOKUP(search_key, range, index, FALSE) exact match.',['VLOOKUP.','Price third column.','Formula: =VLOOKUP(A2,D2:F100,3,FALSE)'],null),
+    'xlookup':d=>qBase('xlookup',d,'Modern SKU lookup','A2 SKU খুঁজে D:D থেকে match করে F:F-এর Product Name ফেরত দাও.','=XLOOKUP(A2,D:D,F:F)','XLOOKUP(search_key, lookup_range, result_range).',['XLOOKUP ব্যবহার করো।','lookup D:D, result F:F.','Formula: =XLOOKUP(A2,D:D,F:F)'],null),
+    'index-match':d=>qBase('index-match',d,'Flexible lookup','A2 SKU; D:D SKU list; F:F return range. INDEX/MATCH formula লিখো.','=INDEX(F:F,MATCH(A2,D:D,0))','MATCH exact row position দেয়, INDEX result range থেকে value নেয়।',['MATCH exact = 0.','INDEX result range F:F.','Formula: =INDEX(F:F,MATCH(A2,D:D,0))'],null),
+    'filter-unique-sort':d=>qBase('filter-unique-sort',d,'Dynamic low-stock list','A2:D100 থেকে rows return করো যেখানে D column < 10.','=FILTER(A2:D100,D2:D100<10)','FILTER range + boolean condition dynamic result দেয়।',['FILTER function.','Condition D2:D100<10.','Formula: =FILTER(A2:D100,D2:D100<10)'],null),
+    'query':d=>qBase('query',d,'QUERY delivered orders','A1:H100 থেকে শুধু Status column H = Delivered rows select করার formula (header=1)?','=QUERY(A1:H100,"select * where H = \'Delivered\'",1)','QUERY SQL-like syntax ব্যবহার করে rows filter করতে পারে।',['QUERY(range, query, headers).','where H = \'Delivered\'','Formula: =QUERY(A1:H100,"select * where H = \'Delivered\'",1)'],null,'formula'),
+    'arrayformula':d=>qBase('arrayformula',d,'Whole-column calculation','A2:A এবং B2:B multiply করে পুরো column-এ result দিতে ARRAYFORMULA pattern?','=ARRAYFORMULA(A2:A*B2:B)','ARRAYFORMULA array ranges একসাথে process করে।',['ARRAYFORMULA wrapper.','A2:A * B2:B.','Formula: =ARRAYFORMULA(A2:A*B2:B)'],null),
+    'pivot':d=>qBase('pivot',d,'Daily summary tool','Thousands of order rows থেকে Status অনুযায়ী Qty sum summary দ্রুত বানাতে কোন tool সবচেয়ে useful?','pivot table','Pivot table grouped summary ও aggregation-এর জন্য ideal.',['Group + summarize.','Insert menu tool.','Answer: Pivot table'],null,'text',{accepted:['pivot','pivot table']}),
+    'charts':d=>qBase('charts',d,'Target vs achievement visual','Daily Target vs Achievement compare করতে কোন chart type সাধারণত clear?','column chart','Column chart categories-এর target vs achievement compare করতে clear.',['Side-by-side bars/columns ভাবো।','Comparison chart.','Answer: Column chart'],null,'text',{accepted:['column chart','bar chart','column','bar']}),
+    'named-ranges':d=>qBase('named-ranges',d,'Readable formulas','B2:B500 stock range-কে “AvailableStock” নামে reuse করতে কোন feature?','named range','Named ranges formulas more readable and maintainable করে।',['Range-কে human-readable name দাও।','Data menu feature.','Answer: Named range'],null,'text',{accepted:['named range','named ranges']}),
+    'inventory-basics':d=>{const op=rand(80,150),inb=rand(15,60),ret=rand(2,10),out=rand(20,70),dam=rand(0,6),ans=op+inb+ret-out-dam;return qBase('inventory-basics',d,'Inventory movement',`Opening ${op}, Inbound ${inb}, Returns ${ret}, Outbound ${out}, Damaged ${dam}. Closing available stock কত?`,ans,`Closing = ${op}+${inb}+${ret}-${out}-${dam} = ${ans}.`,['Inbound/Returns add.','Outbound/Damaged subtract.','Answer: '+ans],null,'numeric')},
+    'stock-reconciliation':d=>{const sys=rand(120,220),variance=rand(2,9),phys=sys-(Math.random()<.5?variance:-variance);return qBase('stock-reconciliation',d,'Stock variance',`System stock ${sys}, physical count ${phys}. Variance = Physical - System হিসেবে কত?`,phys-sys,`Variance = ${phys} - ${sys} = ${phys-sys}. Negative মানে shortage, positive মানে excess.`,['Physical - System.','Sign খেয়াল করো।','Answer: '+(phys-sys)],null,'numeric')},
+    'order-accuracy':d=>{const total=rand(180,400),errors=rand(2,12),acc=Math.round((total-errors)/total*10000)/100;return qBase('order-accuracy',d,'Order accuracy %',`${total} orders-এর মধ্যে ${errors} order-এ error. Accuracy percentage কত?`,acc,`Correct orders = ${total-errors}; accuracy = (${total-errors}/${total})×100 = ${acc}%.`,['Correct = Total - Errors.','Correct ÷ Total ×100.','Answer: '+acc+'%'],null,'numeric',{tolerance:.05})},
+    'sku-matching':d=>qBase('sku-matching',d,'Prevent wrong SKU match','SKU text-এ accidental spaces থাকলে lookup-এর আগে কোন cleaning function সবচেয়ে useful?','trim','TRIM accidental spaces remove করে matching reliability বাড়ায়।',['Whitespace issue.','Text function.','Answer: TRIM'],null,'text',{accepted:['trim','=trim()','trim()']}),
+    'low-stock':d=>{const ds=makeDataset(8);const count=ds.filter(r=>r.Available<r.Reorder_Level).length;return qBase('low-stock',d,'Count low-stock SKUs',`Dataset দেখে Available < Reorder_Level এমন SKU কয়টি?`,count,'প্রতিটি row-এ Available বনাম Reorder_Level compare করতে হবে।',['Available এবং Reorder_Level compare করো।','যেখানে Available ছোট শুধু সেগুলো count করো।','Answer: '+count],ds,'numeric')},
+    'returns-dispatch':d=>qBase('returns-dispatch',d,'Returned order handling','Returned order received হলে inventory update করার আগে সবচেয়ে important first check কী?','verify sku and quantity','Return-এর SKU, quantity এবং condition/source verify না করে stock বাড়ানো risky.',['Blindly stock add করো না।','Returned item identity + quantity verify.','Answer idea: Verify SKU and quantity'],null,'text',{accepted:['verify sku and quantity','sku and quantity','check sku and quantity','verify item sku quantity']}),
+    'shift-reporting':d=>qBase('shift-reporting',d,'Shift report essentials','Shift report-এ কোন metric সবচেয়ে relevant: processed orders, errors, pending, stock variance—নাকি শুধু employee name?','processed orders, errors, pending, stock variance','Operational shift report performance + exceptions capture করে।',['Operational metrics দরকার।','চারটি key metric একসাথে.','Answer: processed orders, errors, pending, stock variance'],null,'text',{accepted:['processed orders, errors, pending, stock variance','orders errors pending stock variance','processed orders errors pending stock variance']}),
+    'data-quality':d=>qBase('data-quality',d,'Missing mandatory data','Order ID আছে কিন্তু SKU blank. Best action কী?','flag and verify before processing','Mandatory SKU missing হলে guess করা যাবে না; source verify ও flag করতে হবে।',['Guess নয়।','Hold/flag + verify source.','Answer idea: Flag and verify before processing'],null,'text',{accepted:['flag and verify before processing','verify before processing','flag and verify','hold and verify']})
+  };
+
+  function checkAnswer(question,input){
+    const value=String(input??'').trim();
+    if(!value) return {correct:false,empty:true};
+    if(question.type==='numeric'){
+      const n=parseFloat(value.replace('%','').replace(/,/g,'')); const e=Number(question.expected); const tol=question.tolerance??0.001;
+      return {correct:Number.isFinite(n)&&Math.abs(n-e)<=tol};
+    }
+    const accepted=[question.expected,...(question.accepted||[])];
+    if(question.type==='formula'){
+      const n=normalizeFormula(value); return {correct:accepted.some(a=>normalizeFormula(a)===n)};
+    }
+    const n=normalizeText(value); return {correct:accepted.some(a=>normalizeText(a)===n || n.includes(normalizeText(a)))};
+  }
+
+  function makeDiagnostic(){
+    const specs=[['interface','easy'],['sum','easy'],['percentage','easy'],['basic-if','medium'],['sort-filter','easy'],['duplicates','medium'],['sumif-sumifs','medium'],['logic','hard'],['vlookup','medium'],['filter-unique-sort','hard'],['stock-reconciliation','medium'],['order-accuracy','hard']];
+    return specs.map(([s,d])=>generateQuestion(s,d));
+  }
+  function applyDiagnostic(results){
+    let score=0;
+    results.forEach(({q,correct})=>{ if(correct)score++; recordAttempt(q.skill,correct,q.difficulty,'diagnostic'); });
+    state.diagnostic={completed:true,score,total:results.length,date:today()}; save(); return score;
+  }
+
+  function generateSimulation(rows=50,difficulty='medium'){
+    const data=makeDataset(rows);
+    // Deliberately inject warehouse-quality issues.
+    if(rows>=10){ data[3].Order_ID=data[1].Order_ID; data[6].SKU=' '+data[6].SKU+' '; data[8].Available+=rand(2,7); }
+    const lowCount=data.filter(r=>r.Available<r.Reorder_Level).length;
+    const duplicateIds=data.filter((r,i,a)=>a.findIndex(x=>x.Order_ID===r.Order_ID)!==i).length;
+    const totalOutbound=data.reduce((a,r)=>a+r.Outbound,0);
+    const mismatchCount=data.filter(r=>r.Available!==Math.max(0,r.Opening+r.Inbound+r.Returns-r.Outbound-r.Damaged)).length;
+    const tasks=[
+      {id:'totalOutbound',label:'Total Outbound quantity বের করো',type:'numeric',expected:totalOutbound,skill:'sum'},
+      {id:'lowStock',label:'Available < Reorder_Level এমন SKU কয়টি?',type:'numeric',expected:lowCount,skill:'low-stock'},
+      {id:'duplicates',label:'Duplicate Order ID-এর extra occurrence কয়টি?',type:'numeric',expected:duplicateIds,skill:'duplicates'},
+      {id:'mismatch',label:'Calculated stock-এর সাথে mismatch থাকা row কয়টি?',type:'numeric',expected:mismatchCount,skill:'stock-reconciliation'}
+    ];
+    if(difficulty!=='medium') tasks.push({id:'formula',label:'Row 2-এর calculated Available-এর formula লিখো (Opening D, Inbound E, Outbound F, Returns G, Damaged H)',type:'formula',expected:'=D2+E2+G2-F2-H2',skill:'inventory-basics'});
+    if(difficulty==='expert') tasks.push({id:'clean',label:'SKU spaces clean করার formula লিখো, যদি SKU A2-তে থাকে',type:'formula',expected:'=TRIM(A2)',skill:'data-cleaning'});
+    return {title:'Warehouse Inventory Reconciliation Packet',context:`তুমি Morning Shift Data Operator. Supervisor ${rows}-row inventory extract দিয়েছে. Submit করার আগে totals, low stock, duplicates এবং stock mismatch detect করতে হবে.`,data,tasks,difficulty};
+  }
+
+  function simulationHeaders(){ return ['SKU','Product','Location','Opening','Inbound','Outbound','Returns','Damaged','Available','Reorder_Level','Order_ID','Qty','Status']; }
+  function toCsv(data){
+    if(!data?.length)return '';
+    const headers=Object.keys(data[0]);
+    return [headers.join(','),...data.map(r=>headers.map(h=>escapeCsv(r[h])).join(','))].join('\n');
+  }
+
+  function evaluateInterview(item,answer){
+    const text=normalizeText(answer);
+    const hits=item.keywords.filter(k=>text.includes(normalizeText(k)));
+    let score=Math.round(hits.length/item.keywords.length*85);
+    if(answer.trim().split(/\s+/).length>=35) score+=8;
+    if(answer.trim().split(/\s+/).length>=70) score+=4;
+    score=Math.min(100,score);
+    const missing=item.keywords.filter(k=>!hits.includes(k));
+    state.interview.attempts++;
+    const n=state.interview.attempts;
+    state.interview.avgScore=Math.round(((state.interview.avgScore*(n-1))+score)/n);
+    recordAttempt('interview',score>=70,'real-world','interview'); save();
+    return {score,hits,missing};
+  }
+
+  function createExam(exam){
+    const qs=[];
+    for(let i=0;i<exam.questions;i++){
+      const skill=chooseAdaptiveSkill(exam.levels);
+      let d='medium'; if(exam.id==='beginner')d=i<5?'easy':'medium'; else if(exam.id==='advanced')d=i<5?'medium':'hard'; else if(exam.id==='final')d=i<6?'medium':i<14?'hard':'expert'; else d=Math.random()<.55?'medium':'hard';
+      qs.push(generateQuestion(skill,d));
+    }
+    return qs;
+  }
+
+  return {getState,save,reset,skillStatus,recordAttempt,overallMastery,accuracy,rank,weakSkills,chooseAdaptiveSkill,adaptiveDifficulty,generateQuestion,checkAnswer,makeDiagnostic,applyDiagnostic,generateSimulation,simulationHeaders,toCsv,evaluateInterview,createExam,difficulties};
+})();
+
+</script>
+  <script>
+(() => {
+  const D=window.SM_DATA, E=window.SM_ENGINE;
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  let currentQuestion=null, hintIndex=0, selectedChoice='', currentSimulation=null;
+  let interviewOrder=[], interviewIndex=0;
+  let exam=null, examQuestions=[], examIndex=0, examScore=0, examTimer=null, examSeconds=0;
+  let diagQuestions=[],diagIndex=0,diagResults=[];
+
+  const titles={dashboard:'Dashboard',roadmap:'Learning Path',practice:'Practice Mode',simulation:'Real Work Simulation',interview:'Interview Simulator',exam:'Exam Mode',progress:'Progress & Mastery'};
+
+  function nav(view){
+    $$('.view').forEach(v=>v.classList.remove('active')); $(`#view-${view}`).classList.add('active');
+    $$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===view)); $('#pageTitle').textContent=titles[view];
+    $('#sidebar').classList.remove('open'); window.scrollTo({top:0,behavior:'smooth'});
+    if(view==='progress')renderProgress(); if(view==='roadmap')renderRoadmap();
+  }
+  $$('.nav-item').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.view)));
+  $$('[data-go]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.go)));
+  $('#menuBtn').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
+
+  function renderAll(){ renderHeader(); renderDashboard(); renderRoadmap(); renderProgress(); populateSkillSelect(); renderExams(); }
+  function renderHeader(){
+    const s=E.getState(),m=E.overallMastery();
+    $('#sidebarStreak').textContent=`${s.streak||0} দিন`; $('#sidebarXP').textContent=s.xp||0; $('#masteryPill').textContent=`Overall Mastery ${m}%`; $('#rankPill').textContent=E.rank();
+  }
+  function renderDashboard(){
+    const s=E.getState(),m=E.overallMastery(),acc=E.accuracy(),weak=E.weakSkills(4);
+    $('#statMastery').textContent=m+'%'; $('#statAccuracy').textContent=acc+'%'; $('#statAttempts').textContent=`${s.totalAttempts} attempts`; $('#statXP').textContent=s.xp; $('#statWeakSkill').textContent=s.totalAttempts?weak[0]?.label:'Not enough data';
+    $('#overallRingText').textContent=m+'%'; $('#overallRing').style.background=`conic-gradient(var(--primary) ${m*3.6}deg,#e8edf5 0deg)`;
+    $('#focusList').innerHTML=weak.map((w,i)=>`<div class="focus-item"><div><strong>${w.label}</strong><small>${E.skillStatus(w)} · ${Math.round(w.mastery)}% mastery · ${w.attempts} attempts</small></div><span class="priority">${i===0?'TOP PRIORITY':'REVIEW'}</span></div>`).join('');
+    const sampled=weak.slice(0,5); $('#dashboardSkillBars').innerHTML=sampled.map(w=>skillBar(w.label,w.mastery)).join('');
+    const d=s.diagnostic;
+    if(d.completed){$('#diagnosticStatusTitle').textContent=`Diagnostic completed: ${d.score}/${d.total}`;$('#diagnosticStatusText').textContent=`Baseline saved on ${d.date}. You can retake it anytime; adaptive practice already uses your skill history.`;$('#diagnosticCardBtn').textContent='Retake Diagnostic';}
+    else{$('#diagnosticStatusTitle').textContent='Diagnostic test not completed';$('#diagnosticStatusText').textContent='১২টি mixed practical question তোমার current level estimate করবে এবং adaptive practice-এর starting point সেট করবে।';$('#diagnosticCardBtn').textContent='Start Diagnostic';}
+  }
+  function skillBar(label,val){return `<div class="skill-row"><span>${label}</span><div class="bar"><i style="width:${Math.max(2,val)}%"></i></div><strong>${Math.round(val)}%</strong></div>`}
+
+  function renderRoadmap(){
+    const s=E.getState();
+    $('#roadmapGrid').innerHTML=D.levels.map(l=>{
+      const vals=l.skills.map(k=>s.skills[k]?.mastery||0); const avg=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length); const mastered=l.skills.filter(k=>E.skillStatus(s.skills[k])==='Mastered').length;
+      return `<article class="card level-card"><div class="level-num">LEVEL<strong>${l.id}</strong></div><div><h3>${l.title}</h3><p>${l.desc}</p><div class="tag-wrap">${l.skills.map(k=>`<span class="tag">${D.skillMeta[k][0]}</span>`).join('')}</div></div><div class="level-progress"><strong>${avg}%</strong><small>${mastered}/${l.skills.length} skills mastered</small></div></article>`;
+    }).join('');
+  }
+  function renderProgress(){
+    const s=E.getState(); $('#progressAttempts').textContent=s.totalAttempts;$('#progressCorrect').textContent=s.totalCorrect;$('#progressAccuracy').textContent=E.accuracy()+'% accuracy'; $('#progressStreak').textContent=(s.bestStreak||0)+' দিন';
+    const entries=Object.entries(s.skills).filter(([k])=>!['interview','exam-readiness'].includes(k)); $('#progressMastered').textContent=entries.filter(([,v])=>E.skillStatus(v)==='Mastered').length;
+    $('#progressTable').innerHTML=entries.sort((a,b)=>D.skillMeta[a[0]][1]-D.skillMeta[b[0]][1]).map(([k,v])=>{
+      const st=E.skillStatus(v),acc=v.attempts?Math.round(v.correct/v.attempts*100):0;return `<div class="progress-row"><div><strong>${D.skillMeta[k][0]}</strong><small style="display:block;color:var(--muted)">Level ${D.skillMeta[k][1]}</small></div><span class="status ${st.toLowerCase().replace(' ','-')}">${st}</span><div class="bar"><i style="width:${Math.max(2,v.mastery)}%"></i></div><strong>${Math.round(v.mastery)}%</strong><small>${acc}% acc.</small></div>`;
+    }).join('');
+  }
+
+  function populateSkillSelect(){
+    const sel=$('#practiceSkillSelect'); if(sel.options.length)return; sel.innerHTML='<option value="adaptive">Adaptive — target my weaknesses</option>'+D.levels.slice(0,6).map(l=>`<optgroup label="Level ${l.id} — ${l.title}">${l.skills.map(k=>`<option value="${k}">${D.skillMeta[k][0]}</option>`).join('')}</optgroup>`).join('');
+  }
+
+  function renderDataset(data){
+    if(!data?.length)return '';
+    const headers=Object.keys(data[0]);
+    return `<table class="sheet-table"><thead><tr><th>#</th>${headers.map((h,i)=>`<th><span class="cell-ref">${String.fromCharCode(65+i)}</span>${h}</th>`).join('')}</tr></thead><tbody>${data.map((r,ri)=>`<tr><th>${ri+2}</th>${headers.map(h=>`<td>${r[h]}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+
+  function startPractice(forceAdaptive=false){
+    nav('practice');
+    const skill=forceAdaptive?'adaptive':$('#practiceSkillSelect').value, diff=$('#practiceDifficultySelect').value;
+    currentQuestion=E.generateQuestion(skill,diff); hintIndex=0; selectedChoice='';
+    $('#problemDifficulty').textContent=currentQuestion.difficulty; $('#problemSkill').textContent=D.skillMeta[currentQuestion.skill]?.[0]||currentQuestion.skill; $('#problemTitle').textContent=currentQuestion.title; $('#problemPrompt').textContent=currentQuestion.prompt; $('#problemDataset').innerHTML=renderDataset(currentQuestion.dataset);
+    $('#answerInput').value='';$('#answerInput').disabled=false;$('#checkAnswerBtn').disabled=false;$('#hintBtn').disabled=false;$('#skipBtn').disabled=false;$('#feedbackBox').className='feedback hidden';$('#feedbackBox').innerHTML='';
+    $('#exportCsvBtn').disabled=!currentQuestion.dataset; $('#hintBtn').textContent='Hint 1';
+    const s=E.getState().skills[currentQuestion.skill];$('#practiceMetaSkill').textContent=D.skillMeta[currentQuestion.skill][0];$('#practiceMetaMastery').textContent=Math.round(s.mastery)+'%';$('#practiceMetaStatus').textContent=E.skillStatus(s);
+  }
+  $('#adaptivePracticeBtn').addEventListener('click',()=>startPractice(true));$('#newPracticeBtn').addEventListener('click',()=>startPractice(false));
+  $('#checkAnswerBtn').addEventListener('click',()=>{
+    if(!currentQuestion)return;const input=selectedChoice||$('#answerInput').value;const res=E.checkAnswer(currentQuestion,input); if(res.empty){showFeedback('info','Answer required','আগে নিজের চেষ্টা লিখো। সরাসরি solution দেখানো হচ্ছে না।');return;}
+    E.recordAttempt(currentQuestion.skill,res.correct,currentQuestion.difficulty);
+    if(res.correct){showFeedback('good','Correct — এবার reasoning শক্ত করো',`<p>${currentQuestion.explanation}</p><p><strong>Next:</strong> Similar variation generate করে consistency build করো.</p>`);}
+    else{showFeedback('bad','Incorrect / incomplete',`<p><strong>কী ভুল হয়েছে:</strong> তোমার answer expected logic-এর সাথে match করেনি.</p><p><strong>কেন:</strong> ${currentQuestion.explanation}</p><p><strong>Correct answer:</strong> <code>${currentQuestion.expected}</code></p><p><strong>Follow-up:</strong> একই skill আবার practice করো; adaptive engine এটাকে priority দেবে.</p>`);}
+    renderAll(); $('#checkAnswerBtn').disabled=true;
+  });
+  $('#hintBtn').addEventListener('click',()=>{if(!currentQuestion)return;const hints=currentQuestion.hints||[];if(hintIndex<hints.length){showFeedback('info',`Hint ${hintIndex+1}`,hints[hintIndex]);hintIndex++;$('#hintBtn').textContent=hintIndex>=hints.length?'No more hints':`Hint ${hintIndex+1}`;if(hintIndex>=hints.length)$('#hintBtn').disabled=true;}});
+  $('#skipBtn').addEventListener('click',()=>{if(!currentQuestion)return;E.recordAttempt(currentQuestion.skill,false,currentQuestion.difficulty);showFeedback('bad','Skipped',`Solution: <code>${currentQuestion.expected}</code><br>${currentQuestion.explanation}`);renderAll();$('#checkAnswerBtn').disabled=true;});
+  $('#exportCsvBtn').addEventListener('click',()=>{if(currentQuestion?.dataset)downloadCsv(currentQuestion.dataset,'sheetmaster-practice-dataset.csv')});
+  function showFeedback(kind,title,html){const b=$('#feedbackBox');b.className=`feedback ${kind}`;b.innerHTML=`<h4>${title}</h4>${html}`;}
+
+  function generateSimulation(){
+    currentSimulation=E.generateSimulation(Number($('#simRows').value),$('#simDifficulty').value); $('#simTitle').textContent=currentSimulation.title;$('#simContext').textContent=currentSimulation.context;
+    $('#simTasks').innerHTML=currentSimulation.tasks.map((t,i)=>`<div class="sim-task"><strong>Task ${i+1}</strong> — ${t.label}</div>`).join('');$('#simDataset').innerHTML=renderDataset(currentSimulation.data);
+    $('#simAnswerArea').innerHTML=currentSimulation.tasks.map((t,i)=>`<div class="sim-answer-block"><h4>Task ${i+1}</h4><textarea class="sim-answer" data-task="${t.id}" rows="2" placeholder="Your answer..."></textarea><button class="btn btn-secondary btn-small sim-check" data-index="${i}">Check task</button><div class="sim-task-feedback" id="simfb-${i}"></div></div>`).join(''); $('#simCsvBtn').disabled=false;
+    $$('.sim-check').forEach(b=>b.addEventListener('click',()=>checkSimTask(Number(b.dataset.index))));
+  }
+  function checkSimTask(i){const t=currentSimulation.tasks[i],input=$(`textarea[data-task="${t.id}"]`).value;const q={type:t.type,expected:t.expected,tolerance:.01};const res=E.checkAnswer(q,input);E.recordAttempt(t.skill,res.correct,currentSimulation.difficulty,'simulation');const el=$(`#simfb-${i}`);el.className='feedback '+(res.correct?'good':'bad');el.innerHTML=res.correct?'<strong>Correct.</strong>':'<strong>Incorrect.</strong> Recheck the dataset and calculation before revealing the final value. <button class="link-btn sim-reveal" data-i="'+i+'">Reveal solution</button>';const reveal=el.querySelector('.sim-reveal');if(reveal)reveal.onclick=()=>{el.innerHTML=`<strong>Solution:</strong> <code>${t.expected}</code>`};renderAll();}
+  $('#generateSimulationBtn').addEventListener('click',generateSimulation);$('#simCsvBtn').addEventListener('click',()=>currentSimulation&&downloadCsv(currentSimulation.data,'warehouse-work-packet.csv'));
+  function downloadCsv(data,name){const blob=new Blob([E.toCsv(data)],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},0)}
+
+  function startInterview(){interviewOrder=[...D.interviewBank].sort(()=>Math.random()-.5);interviewIndex=0;showInterviewQuestion();$('#interviewStartBtn').textContent='Restart Interview';}
+  function showInterviewQuestion(){const item=interviewOrder[interviewIndex];if(!item){$('#interviewQuestion').textContent='Interview set complete.';$('#interviewSubmitBtn').disabled=true;return;}$('#interviewCategory').textContent=item.category;$('#interviewCounter').textContent=`Question ${interviewIndex+1} / ${interviewOrder.length}`;$('#interviewQuestion').textContent=item.q;$('#interviewAnswer').value='';$('#interviewAnswer').disabled=false;$('#interviewSubmitBtn').disabled=false;$('#interviewFeedback').className='feedback hidden';}
+  $('#interviewStartBtn').addEventListener('click',startInterview);$('#interviewSubmitBtn').addEventListener('click',()=>{const item=interviewOrder[interviewIndex],ans=$('#interviewAnswer').value.trim();if(!ans){showInterviewFeedback('info','আগে answer লিখো।');return;}const r=E.evaluateInterview(item,ans);const good=r.hits.length?r.hits.join(', '):'No strong keyword coverage yet';const missing=r.missing.length?r.missing.join(', '):'No major keyword gap';showInterviewFeedback(r.score>=70?'good':'bad',`<h4>Score: ${r.score}/100</h4><p><strong>Good:</strong> ${good}</p><p><strong>Missing / improve:</strong> ${missing}</p><p><strong>Professional version:</strong> ${item.sample}</p><button class="btn btn-primary btn-small" id="nextInterviewBtn">Next Question</button>`);$('#interviewSubmitBtn').disabled=true;setTimeout(()=>{const b=$('#nextInterviewBtn');if(b)b.onclick=()=>{interviewIndex++;showInterviewQuestion();}},0);renderAll();});
+  function showInterviewFeedback(kind,html){const b=$('#interviewFeedback');b.className='feedback '+kind;b.innerHTML=html;}
+
+  function renderExams(){if($('#examOptions').children.length)return;$('#examOptions').innerHTML=D.exams.map(x=>`<button class="exam-option" data-exam="${x.id}"><strong>${x.name}</strong><small>${x.questions} questions · ${x.minutes} min</small></button>`).join('');$$('.exam-option').forEach(b=>b.onclick=()=>startExam(b.dataset.exam));}
+  function startExam(id){if(examTimer)clearInterval(examTimer);exam=D.exams.find(x=>x.id===id);examQuestions=E.createExam(exam);examIndex=0;examScore=0;examSeconds=exam.minutes*60;$('#examName').textContent=exam.name;tickExam();examTimer=setInterval(()=>{examSeconds--;tickExam();if(examSeconds<=0)finishExam(true)},1000);showExamQuestion();}
+  function tickExam(){const m=String(Math.floor(examSeconds/60)).padStart(2,'0'),s=String(examSeconds%60).padStart(2,'0');$('#examTimer').textContent=`${m}:${s}`;}
+  function showExamQuestion(){const q=examQuestions[examIndex];$('#examProgress').textContent=`${examIndex+1} / ${examQuestions.length}`;$('#examContent').innerHTML=`<div class="exam-question"><span class="badge">${D.skillMeta[q.skill][0]}</span><h3>${q.title}</h3><p>${q.prompt}</p>${renderDataset(q.dataset)}<textarea id="examAnswer" class="sim-answer" rows="3" placeholder="Your answer..."></textarea><div class="answer-actions"><button class="btn btn-primary" id="examSubmit">Submit & Next</button></div></div>`;$('#examSubmit').onclick=()=>{const res=E.checkAnswer(q,$('#examAnswer').value);E.recordAttempt(q.skill,res.correct,q.difficulty,'exam');if(res.correct)examScore++;examIndex++;if(examIndex>=examQuestions.length)finishExam(false);else showExamQuestion();};}
+  function finishExam(timeout){if(examTimer)clearInterval(examTimer);examTimer=null;const pct=Math.round(examScore/examQuestions.length*100);const s=E.getState();s.examHistory.push({id:exam.id,name:exam.name,score:examScore,total:examQuestions.length,pct,date:new Date().toISOString(),timeout});if(s.examHistory.length>20)s.examHistory.shift();E.save();E.recordAttempt('exam-readiness',pct>=75,'real-world','exam');$('#examProgress').textContent=`${examQuestions.length} / ${examQuestions.length}`;$('#examContent').innerHTML=`<div class="feedback ${pct>=75?'good':'bad'}"><h3>${timeout?'Time expired':'Exam complete'} — ${pct}%</h3><p>Score: ${examScore}/${examQuestions.length}</p><p>${pct>=85?'Strong result. Move to harder mixed work.':pct>=70?'Functional, but weak topics still need repetition.':'Not job-ready yet. Adaptive practice will target the failed skills.'}</p></div>`;renderAll();}
+
+  function openDiagnostic(){diagQuestions=E.makeDiagnostic();diagIndex=0;diagResults=[];$('#diagnosticModal').classList.remove('hidden');renderDiagQuestion();}
+  function renderDiagQuestion(){const q=diagQuestions[diagIndex];$('#diagCounter').textContent=`Question ${diagIndex+1} / ${diagQuestions.length}`;$('#diagScore').textContent=`Score: ${diagResults.filter(x=>x.correct).length}`;$('#diagProgressBar').style.width=`${diagIndex/diagQuestions.length*100}%`;$('#diagBody').innerHTML=`<div class="diag-question"><span class="badge">${D.skillMeta[q.skill][0]}</span><h3>${q.title}</h3><p>${q.prompt}</p>${renderDataset(q.dataset)}<textarea id="diagAnswer" placeholder="Your answer..."></textarea><div class="diag-actions"><button class="btn btn-primary" id="diagSubmit">Submit</button><button class="btn btn-ghost" id="diagSkip">Skip</button></div><div id="diagFeedback"></div></div>`;$('#diagSubmit').onclick=()=>submitDiag(false);$('#diagSkip').onclick=()=>submitDiag(true);}
+  function submitDiag(skip){const q=diagQuestions[diagIndex],res=skip?{correct:false}:E.checkAnswer(q,$('#diagAnswer').value);if(!skip&&res.empty){$('#diagFeedback').innerHTML='<div class="feedback info">আগে answer লিখো অথবা Skip করো.</div>';return;}diagResults.push({q,correct:res.correct});diagIndex++;if(diagIndex>=diagQuestions.length){const score=E.applyDiagnostic(diagResults),pct=Math.round(score/diagQuestions.length*100);$('#diagProgressBar').style.width='100%';$('#diagCounter').textContent='Complete';$('#diagScore').textContent=`Score: ${score}/${diagQuestions.length}`;$('#diagBody').innerHTML=`<div class="feedback ${pct>=70?'good':'bad'}"><h3>Diagnostic result: ${pct}%</h3><p>${pct>=85?'You can start from intermediate/advanced mixed practice, but mastery still requires repeated consistency.':pct>=60?'You have some foundation. Adaptive practice will mix revision with harder tasks.':'Start with fundamentals. The system will increase repetition before raising difficulty.'}</p><button class="btn btn-primary" id="diagDone">Start Adaptive Practice</button></div>`;$('#diagDone').onclick=()=>{$('#diagnosticModal').classList.add('hidden');renderAll();startPractice(true)};renderAll();return;}renderDiagQuestion();}
+  $('#diagnosticBtn').onclick=openDiagnostic;$('#diagnosticCardBtn').onclick=openDiagnostic;$('#closeDiagnosticBtn').onclick=()=>$('#diagnosticModal').classList.add('hidden');
+
+  $('#resetProgressBtn').addEventListener('click',()=>{if(confirm('সব progress, XP, mastery, exam history reset হবে. Continue?')){E.reset();renderAll();currentQuestion=null;nav('dashboard');}});
+
+  renderAll();
+})();
+
+</script>
 </body>
 </html>
