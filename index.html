@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SheetMaster Practice Lab — adaptive Google Sheets and Warehouse Data Operator training." />
+  <title>SheetMaster Practice Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">SM</div>
+        <div>
+          <strong>SheetMaster</strong>
+          <span>Practice Lab</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-view="dashboard">🏠 <span>Dashboard</span></button>
+        <button class="nav-item" data-view="roadmap">🗺️ <span>Learning Path</span></button>
+        <button class="nav-item" data-view="practice">🧠 <span>Practice</span></button>
+        <button class="nav-item" data-view="simulation">📦 <span>Work Simulation</span></button>
+        <button class="nav-item" data-view="interview">🎤 <span>Interview</span></button>
+        <button class="nav-item" data-view="exam">⏱️ <span>Exam Mode</span></button>
+        <button class="nav-item" data-view="progress">📊 <span>Progress</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="mini-stat"><span>🔥 Streak</span><strong id="sidebarStreak">0 দিন</strong></div>
+        <div class="mini-stat"><span>⚡ XP</span><strong id="sidebarXP">0</strong></div>
+        <button class="btn btn-ghost btn-small" id="resetProgressBtn">Reset progress</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-only" id="menuBtn" aria-label="Open menu">☰</button>
+        <div>
+          <div class="eyebrow">WAREHOUSE DEO CAREER TRACK</div>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="pill" id="masteryPill">Overall Mastery 0%</span>
+          <span class="pill pill-accent" id="rankPill">Rookie</span>
+        </div>
+      </header>
+
+      <section class="view active" id="view-dashboard">
+        <div class="hero card">
+          <div>
+            <span class="badge">Adaptive Training System</span>
+            <h2>Google Sheets + Warehouse Data Operator mastery</h2>
+            <p>বাংলায় শিখবে, কিন্তু formulas, menus, functions এবং workplace terminology থাকবে English-এ। ভুল করলে system তোমার weak skill শনাক্ত করে targeted repetition দেবে।</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="adaptivePracticeBtn">Start Adaptive Practice</button>
+              <button class="btn btn-secondary" id="diagnosticBtn">Take Diagnostic Test</button>
+            </div>
+          </div>
+          <div class="hero-score">
+            <div class="ring" id="overallRing"><span id="overallRingText">0%</span></div>
+            <small>Overall mastery</small>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="card stat-card"><span>Mastery</span><strong id="statMastery">0%</strong><small>Across all tracked skills</small></article>
+          <article class="card stat-card"><span>Accuracy</span><strong id="statAccuracy">0%</strong><small id="statAttempts">0 attempts</small></article>
+          <article class="card stat-card"><span>XP</span><strong id="statXP">0</strong><small>Earned by correct work</small></article>
+          <article class="card stat-card"><span>Weakest Skill</span><strong id="statWeakSkill">Not enough data</strong><small>Adaptive engine priority</small></article>
+        </div>
+
+        <div class="two-col">
+          <article class="card">
+            <div class="section-head"><div><span class="eyebrow">TODAY'S FOCUS</span><h3>Recommended training</h3></div><button class="link-btn" data-go="practice">Open practice →</button></div>
+            <div id="focusList" class="focus-list"></div>
+          </article>
+          <article class="card">
+            <div class="section-head"><div><span class="eyebrow">MASTERY MAP</span><h3>Skill status overview</h3></div><button class="link-btn" data-go="progress">Full progress →</button></div>
+            <div id="dashboardSkillBars" class="skill-bars"></div>
+          </article>
+        </div>
+
+        <article class="card diagnostic-card" id="diagnosticStatusCard">
+          <div>
+            <span class="eyebrow">BASELINE CHECK</span>
+            <h3 id="diagnosticStatusTitle">Diagnostic test not completed</h3>
+            <p id="diagnosticStatusText">১২টি mixed practical question তোমার current level estimate করবে এবং adaptive practice-এর starting point সেট করবে।</p>
+          </div>
+          <button class="btn btn-secondary" id="diagnosticCardBtn">Start Diagnostic</button>
+        </article>
+      </section>
+
+      <section class="view" id="view-roadmap">
+        <div class="section-intro">
+          <p>Beginner → Expert learning path. Level unlock visually reflects readiness, but practice can target any skill when needed.</p>
+        </div>
+        <div id="roadmapGrid" class="roadmap-grid"></div>
+      </section>
+
+      <section class="view" id="view-practice">
+        <div class="practice-layout">
+          <aside class="card practice-settings">
+            <span class="eyebrow">PRACTICE SETUP</span>
+            <h3>Targeted or adaptive</h3>
+            <label>Skill
+              <select id="practiceSkillSelect"></select>
+            </label>
+            <label>Difficulty
+              <select id="practiceDifficultySelect">
+                <option value="adaptive">Adaptive</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="expert">Expert</option>
+                <option value="real-world">Real-world</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" id="newPracticeBtn">Generate Problem</button>
+            <div class="practice-meta">
+              <div><span>Current skill</span><strong id="practiceMetaSkill">—</strong></div>
+              <div><span>Mastery</span><strong id="practiceMetaMastery">—</strong></div>
+              <div><span>Status</span><strong id="practiceMetaStatus">—</strong></div>
+            </div>
+          </aside>
+
+          <article class="card problem-card">
+            <div class="problem-topline">
+              <div><span class="badge" id="problemDifficulty">Adaptive</span><span class="badge badge-muted" id="problemSkill">Skill</span></div>
+              <button class="btn btn-ghost btn-small" id="exportCsvBtn" disabled>Export dataset CSV</button>
+            </div>
+            <h2 id="problemTitle">Generate a problem to begin</h2>
+            <p id="problemPrompt">Adaptive mode তোমার weakest high-priority skill থেকে question নির্বাচন করবে।</p>
+            <div id="problemDataset" class="dataset-wrap"></div>
+
+            <div class="answer-area">
+              <label id="answerLabel" for="answerInput">Your answer</label>
+              <textarea id="answerInput" rows="3" placeholder="Formula, value, or action লিখো..." disabled></textarea>
+              <div id="choiceArea" class="choice-area"></div>
+              <div class="answer-actions">
+                <button class="btn btn-primary" id="checkAnswerBtn" disabled>Check Answer</button>
+                <button class="btn btn-secondary" id="hintBtn" disabled>Hint 1</button>
+                <button class="btn btn-ghost" id="skipBtn" disabled>Skip</button>
+              </div>
+            </div>
+            <div id="feedbackBox" class="feedback hidden"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-simulation">
+        <div class="section-intro"><p>Realistic warehouse work packets with larger datasets, multiple tasks, reconciliation, order accuracy and reporting.</p></div>
+        <div class="simulation-grid">
+          <aside class="card sim-brief">
+            <span class="eyebrow">SHIFT BRIEF</span>
+            <h3 id="simTitle">Morning Inventory Reconciliation</h3>
+            <p id="simContext">Generate a warehouse work packet to start.</p>
+            <div class="sim-controls">
+              <label>Rows
+                <select id="simRows"><option>20</option><option selected>50</option><option>100</option><option>250</option><option>500</option></select>
+              </label>
+              <label>Difficulty
+                <select id="simDifficulty"><option value="medium">Medium</option><option value="hard">Hard</option><option value="expert">Expert</option></select>
+              </label>
+            </div>
+            <button class="btn btn-primary" id="generateSimulationBtn">Generate Work Packet</button>
+            <button class="btn btn-secondary" id="simCsvBtn" disabled>Download CSV for Google Sheets</button>
+          </aside>
+          <article class="card sim-workspace">
+            <div id="simTasks" class="sim-tasks empty-state">No work packet generated yet.</div>
+            <div id="simDataset" class="dataset-wrap tall"></div>
+            <div id="simAnswerArea"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-interview">
+        <div class="interview-shell">
+          <article class="card interview-card">
+            <div class="interview-header"><span class="badge" id="interviewCategory">Mixed Interview</span><span class="pill" id="interviewCounter">Question 1</span></div>
+            <h2 id="interviewQuestion">Click Start Interview to begin.</h2>
+            <p class="muted">Answer as if you are speaking to an interviewer. The local evaluator checks structure and important concepts; use the professional sample to improve.</p>
+            <textarea id="interviewAnswer" rows="7" placeholder="Type your interview answer here..." disabled></textarea>
+            <div class="answer-actions">
+              <button class="btn btn-primary" id="interviewSubmitBtn" disabled>Score My Answer</button>
+              <button class="btn btn-secondary" id="interviewStartBtn">Start Interview</button>
+            </div>
+            <div id="interviewFeedback" class="feedback hidden"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-exam">
+        <div class="exam-grid">
+          <aside class="card">
+            <span class="eyebrow">TIMED EXAMS</span>
+            <h3>Choose exam</h3>
+            <div id="examOptions" class="exam-options"></div>
+          </aside>
+          <article class="card exam-workspace">
+            <div class="exam-statusbar">
+              <strong id="examName">No exam running</strong>
+              <span id="examTimer">00:00</span>
+              <span id="examProgress">0 / 0</span>
+            </div>
+            <div id="examContent" class="empty-state">Choose an exam to begin.</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-progress">
+        <div class="stats-grid">
+          <article class="card stat-card"><span>Total Attempts</span><strong id="progressAttempts">0</strong><small>Practice + diagnostic + exams</small></article>
+          <article class="card stat-card"><span>Correct</span><strong id="progressCorrect">0</strong><small id="progressAccuracy">0% accuracy</small></article>
+          <article class="card stat-card"><span>Mastered Skills</span><strong id="progressMastered">0</strong><small>Consistency required</small></article>
+          <article class="card stat-card"><span>Best Streak</span><strong id="progressStreak">0 দিন</strong><small>Training consistency</small></article>
+        </div>
+        <article class="card">
+          <div class="section-head"><div><span class="eyebrow">DETAILED MASTERY</span><h3>Skill-by-skill performance</h3></div></div>
+          <div id="progressTable" class="progress-table"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="diagnosticModal" role="dialog" aria-modal="true" aria-labelledby="diagTitle">
+    <div class="modal card">
+      <div class="modal-head"><div><span class="eyebrow">DIAGNOSTIC TEST</span><h2 id="diagTitle">Find your starting level</h2></div><button class="icon-btn" id="closeDiagnosticBtn" aria-label="Close">✕</button></div>
+      <div class="diag-status"><span id="diagCounter">Question 1 / 12</span><span id="diagScore">Score: 0</span></div>
+      <div class="progress-track"><div id="diagProgressBar"></div></div>
+      <div id="diagBody"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
